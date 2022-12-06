@@ -33,16 +33,14 @@ def choose_topic():
         print("Choose a topic:")
         print(', '.join(topic_list))
         topic_choice = input('Enter the topic: ')
-    if topic_choice == 'animals':
-        words = animals
-    elif topic_choice == 'fruit':
-        words = fruit
-    elif topic_choice == 'sports':
-        words = sports
-    else:
+    if topic_choice == 'random':
         words = random.choice(topics)
-    print("Okay! That's your word: ")
+    else:
+        for i in list(topic_list.keys()):
+            if topic_choice == i:
+                words = topic_list.get(i)
     return(words)
+    print("Okay! That's your word: ")
 
 
 def rand_word():
