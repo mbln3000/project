@@ -1,8 +1,7 @@
 import random
 
-topic_list = ['animals', 'fruit', 'sports', 'random']
 animals = ['Alpaca', 'Buffalo', 'Bull', 'Camel', 'Cat', 'Chicken', 'Cow', 'Deer', 'Dog', 'Donkey', 'Dove', 'Duck',
-           'Emu', 'Fish', 'Goat', 'Goose', 'Hamster', 'Hen', 'Horse', 'Llama', 'Mule', 'Ostrich', 'Ox', 'Parrot',
+           'Emu', 'Fish', 'Goat', 'Goose', 'Hamster', 'Hen', 'Horse', 'Llama', 'Mule', 'Ostrich', 'Parrot',
            'Partridge', 'Pig', 'Quail', 'Rabbit', 'Reindeer', 'Rooster', 'Sheep', 'Squirrel', 'Turkey', 'Yak']
 fruit = ['Orange', 'Apple', 'Avocado', 'Mango', 'Peach', 'Banana', 'Watermelon', 'Guava', 'Kiwi', 'Apricot', 'Pear',
          'Fig', 'Lemon', 'Papaya', 'Plum', 'Coconut']
@@ -10,6 +9,7 @@ sports = ['Swimming', 'Cycling', 'Tennis', 'Boxing', 'Shooting', 'Judo', 'Golf',
           'Volleyball', 'Baseball', 'Gymnastics', 'Bowling', 'Athletics', 'Weightlifting', 'Fencing', 'Archery',
           'Badminton', 'Diving', 'Cricket']
 topics = [animals, fruit, sports]
+topic_list = {'animals': animals, 'fruit': fruit, 'sports': sports, 'random': None}
 
 
 def hello():
@@ -28,6 +28,10 @@ def start_quest():
         return(ans)
 
 
+# def edit_mode():
+#     new_t = input("Add new topic: ")
+
+
 def choose_topic():
     if ans == 'yes':
         print("Choose a topic:")
@@ -40,7 +44,7 @@ def choose_topic():
             if topic_choice == i:
                 words = topic_list.get(i)
     return(words)
-    print("Okay! That's your word: ")
+
 
 
 def rand_word():
@@ -48,6 +52,7 @@ def rand_word():
     sha_word = list(r_word)
     random.shuffle(sha_word)
     sha_word_low = (' '.join(sha_word))
+    print("Okay! That's your word: ")
     print(sha_word_low.lower())
     return(r_word)
 
@@ -55,7 +60,7 @@ def rand_word():
 def guess():
     user_word = input('Enter a word: ')
     count = 0
-    while user_word != (r_word.lower()) and count != 2:
+    while user_word != (r_word.lower()):
         print("No, that's not it.")
         count += 1
         if count == 1:
@@ -65,12 +70,13 @@ def guess():
         user_word = input('Enter a word: ')
         if count == 3:
             print("Sorry, you lost...")
+            break
     if user_word == (r_word.lower()) and count < 3:
         print('Success!')
 
 
-
 hello()
+# edit_mode()
 ans = start_quest()
 words = choose_topic()
 r_word = rand_word()
